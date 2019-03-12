@@ -1,0 +1,9 @@
+{
+  "name": "pt-vue-tpl",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "vue模板",
+  "devDependencies": {
+    "vue-cli": "^2.9.3"
+  }
+}

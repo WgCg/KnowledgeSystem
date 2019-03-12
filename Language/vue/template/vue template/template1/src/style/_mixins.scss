@@ -1,0 +1,91 @@
+@charset 'utf-8';
+
+// 配置图片背景
+@mixin setIconBg($iconName, $position: center, $backgroundSize: contain) {
+    background: {
+        image: url(~resources/#{$iconName});
+        repeat: no-repeat;
+        size: $backgroundSize;
+        position: $position;
+    }
+}
+
+// 绝对定位，默认取上 & 左两个定位值
+// 如果不需要设置left/top，需传入$left/$top: null
+// @include absoluteCenter(50%, 50%);
+@mixin setAbsolutePosition($left: center, $top: center, $right: null, $bottom: null) {
+    position: absolute;
+
+    @if $left == center and $top == center {
+        transform: translate(-50%, -50%);
+        $top: 50%;
+        $left: 50%;
+    } @else {
+        @if $left == center {
+            transform: translate(-50%, 0);
+            $left: 50%;
+        }
+        @if $top == center {
+            transform: translate(0, -50%);
+            $top: 50%;
+        }
+    }
+
+    left: $left;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+}
+
+// 单行文本溢出隐藏
+@mixin setTextOverflow($width) {
+    overflow: hidden;
+    width: $width;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// 使用伪元素生成1像素的上/底边框
+// 如果伪元素用于其他效果则不可使用
+@mixin setThinBorder($position, $borderColor) {
+    $ratio: .5;
+    $width: 100%;
+    $left: 0;
+
+    @if $position == top {
+        &::before {
+            @include setAbsolutePosition($left: $left, $top: 0);
+            content: '';
+            transform-origin: 0 0;
+            transform: scaleY($ratio);
+            width: $width;
+            border-bottom: 1px solid $borderColor;
+        }
+    } @else {
+        &::before {
+            @include setAbsolutePosition($left: $left, $bottom: 0, $top: null);
+            content: '';
+            transform-origin: 0 1px;
+            transform: scaleY($ratio);
+            width: $width;
+            border-bottom: 1px solid $borderColor;
+        }
+
+    }
+}
+
+// 借助before伪元素生成全覆盖1px border
+@mixin setFullThinBorder($borderColor, $borderRadius: null, $borderStyle: solid) {
+    $ratio: .5;
+    $ratioSize: 100% / $ratio;
+    &::before {
+        @include setAbsolutePosition;
+        content: '';
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale($ratio);
+        width: $ratioSize;
+        height: $ratioSize;
+        border: 1px $borderStyle $borderColor;
+        border-radius: $borderRadius;
+    }
+}

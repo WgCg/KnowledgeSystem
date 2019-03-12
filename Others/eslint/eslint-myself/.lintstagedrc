@@ -1,0 +1,12 @@
+{
+    "linters": {
+        "./**/*.{js,vue}": [
+            "eslint",
+            "git add"
+        ]
+    },
+    "ignore": [
+        './build/*',
+        './node_modules/*'
+    ]
+}

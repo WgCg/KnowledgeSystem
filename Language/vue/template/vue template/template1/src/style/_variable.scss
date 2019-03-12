@@ -1,0 +1,132 @@
+@charset 'utf-8';
+
+@import '_sprite';
+@import '_mixins';
+
+// 字体相关样式
+$subCategoryTipFontColor: #846545;
+$boldFontFamily: PingFangTC-Medium;
+$normalFontFamily: PingFangSC-Regular;
+$normalFontColor: #292d33;
+$lightFontFamily: PingFangSC-Light;
+$lightFontColor: #848c99;
+$warnFontColor: #e6454a;
+$placeholderColor: #b2b8c2;
+$activeButtonFontColor: #f4e1e2;
+
+// 边框相关
+$normalBorderColor: #e8ebf0;
+
+// 背景相关
+$subCategoryBgColor: #f1f2f6;
+$specialPointBgColor: #c38969;
+$searchInputBgColor: #f2f4f7;
+$activeButtonBgColor: #f5f7fa;
+$activeButtonBackground: #c23a3f;
+$activeLineViewColor: #F5F6F8;
+
+// popup
+$popup-mask-bgc: rgb(37, 38, 45);
+$popup-mask-opacity: .4;
+
+// picker
+$picker-bgc: #fff;
+$picker-title-color: #292D33;
+$picker-confirm-btn-color: #E6454A;
+$picker-cancel-btn-color: #E6454A;
+$picker-item-color: #525A66;
+
+// 公用样式
+html {
+    background: #F1F2F6;
+}
+
+.tar {
+    text-align: right;
+}
+
+.icon-arrow {
+    &::after {
+        @include setIconBg('arrow-right.png');
+        content: '';
+        display: inline-block;
+        width: .13rem;
+        height: .24rem;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.icon-close {
+    $size: .28rem;
+    @include setIconBg('close.png');
+    width: $size;
+    height: $size;
+}
+
+// 占位元素，避免固定位置按钮盖住屏幕
+.holder {
+    height: 1.5rem;
+}
+
+.line-active:active {
+    background: $activeLineViewColor;
+}
+
+// 溢出...
+.overflow-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* 内容水平垂直居中显示 */
+
+.all-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+/* 内容水平居中 */
+
+.vertical-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+
+/* 内容垂直居中显示 */
+
+.horizontal-center {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+// 上边框1px
+.border-top-1px {
+    position: relative;
+    @include setThinBorder(top, #E8EBF0);
+}
+
+// 下边框1px
+.border-bottom-1px {
+    position: relative;
+    @include setThinBorder(bottom, #DDDDDD);
+}

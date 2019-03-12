@@ -1,0 +1,54 @@
+@charset 'utf-8';
+
+@import '../../style/_mixins';
+@import '../../style/_variable';
+
+.dialog {
+    @include setAbsolutePosition(0, 0, 0, 0);
+    line-height: 1;
+    background-color: rgba(#000, .5);
+    z-index: 501; 
+
+    &-box {
+        @include setAbsolutePosition;
+        width: 5.4rem;
+        border-radius: .04rem;
+        background-color: #fff;
+    }
+
+    &-info {
+        margin: .34rem .9rem;
+        line-height: .4rem;
+        font-size: .3rem;
+    }
+
+    &-button {
+        @include setThinBorder(bottom, $normalBorderColor);
+        position: relative;
+        font-size: .32rem;
+        color: $warnFontColor;
+
+        & > p {
+            float: left;
+            padding: .28rem 0;
+            width: 50%;
+            text-align: center;
+
+            &:active {
+                background: $activeButtonBgColor;
+            }
+
+            &:first-child {
+                position: relative;
+
+                &::after {
+                    @include setAbsolutePosition($right: 0, $top: 0, $left: null);
+                    content: '';
+                    transform: scaleX(.5);
+                    height: 100%;
+                    border-right: 1px solid $normalBorderColor;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+@import '../../style/_mixins';
+
+.img-previewer {
+    @include setAbsolutePosition(0, 0, 0, 0);
+    z-index: 13;
+    background: rgba(#000, 1);
+
+    @keyframes preview-img-animation {
+        from {
+            transform: translate(-50%, -50%) scale(0);
+        }
+        to {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+
+    & > img {
+        @include setAbsolutePosition;
+        animation: preview-img-animation .1s ease-out both;
+    }
+}

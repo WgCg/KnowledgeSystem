@@ -1,0 +1,65 @@
+@charset 'utf-8';
+
+@import '../../style/_mixins';
+
+$animation_time: .2s;
+
+@keyframes toast-icon-animation {
+    60% {
+        transform: scale(1.5);
+    }
+}
+
+.vue-toast-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.vue-toast {
+    display: table;
+    transition: opacity $animation_time linear;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: .4rem;
+    max-width: 6.1rem;
+    line-height: 1.2;
+    border-radius: .04rem;
+    background: rgba(0, 0, 0, .75);
+    // white-space: nowrap;
+    font-size: .3rem;
+    color: #fff;
+
+    @mixin icon($name) {
+        &::before {
+            @include setIconBg($name);
+            $size: .44rem;
+            content: '';
+            display: block;
+            margin: 0 auto .24rem;
+            width: $size;
+            height: $size;
+        }
+    }
+
+    // 设置图标动画
+    &.animation {
+        &::before {
+            animation: toast-icon-animation linear .5s;
+        }
+    }
+
+    &.info {
+        @include icon('info.png');
+    }
+
+    &.confirm {
+        @include icon('confirm.png');
+    }
+}
